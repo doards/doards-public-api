@@ -8,7 +8,7 @@ It started as a set of PEPPOL codelists (still available as plain CSV / SQL in
 this repository, see [Downloadable datasets](#downloadable-datasets)) and has
 grown into a single endpoint for the everyday lookup data that business software
 needs: countries, states, cities, industries, public holidays, vehicle brands,
-tire sizes, chart-of-accounts frameworks and the PEPPOL e-invoicing codelists.
+tire sizes and the PEPPOL e-invoicing codelists.
 
 - **Base URL:** `https://public.doards.com/api`
 - **Format:** JSON over HTTPS, `GET` only
@@ -32,7 +32,6 @@ tire sizes, chart-of-accounts frameworks and the PEPPOL e-invoicing codelists.
 | Public holidays    | `/public-holidays`        | Public holidays per country (and optionally per state). |
 | Car brands         | `/car-brands`             | Vehicle manufacturer list with descriptions and logos. |
 | Tire sizes         | `/tire-sizes`             | Standard tire-size designations. |
-| Chart of accounts  | `/accounts`               | German SKR03 / SKR04 accounting frameworks (account number, name, class, group, category). |
 | PEPPOL EAS         | `/peppol-eas`             | Electronic Address Scheme codes (EAS / ISO 6523) for e-invoicing. |
 | PEPPOL UNCL4461    | `/peppol-uncl4461`        | UNCL 4461 payment-means codes for e-invoicing. |
 | Postal codes       | `/postal-codes`           | ~1.8 million postal codes with place names, subdivisions and estimated coordinates (GeoNames). |
@@ -154,8 +153,6 @@ All paths are relative to the base URL `https://public.doards.com/api`.
 | GET    | `/public-holidays`                 | `iso` (ISO2, **required**), `state` (optional)         |
 | GET    | `/car-brands`                      | `q`, `limit`                                           |
 | GET    | `/tire-sizes`                      | `q`, `limit`                                           |
-| GET    | `/accounts`                        | `q`, `skr` (`03` or `04`), `limit` (1–2000)            |
-| GET    | `/accounts/{skr}/{account_number}` | path: SKR framework + account number                   |
 | GET    | `/peppol-eas`                      | `q`, `limit`                                           |
 | GET    | `/peppol-uncl4461`                 | `q`, `limit`                                           |
 | GET    | `/peppol-uncl4461/by-name/{name}`  | path: code name                                        |
