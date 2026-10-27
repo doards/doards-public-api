@@ -65,12 +65,54 @@ tire sizes and the PEPPOL e-invoicing codelists.
 | Legal forms        | `/legal-forms`            | ISO 20275 entity legal forms (GmbH, AG, Ltd ...) per country and language (GLEIF). Rights not verified. |
 | VAT rates          | `/vat-rates`, `/vat-rate-goods` | Standard and reduced VAT rates of the EU member states with categories and CN / CPA codes (European Commission TEDB). Not a reference for legal purposes. |
 | E-invoicing lists  | `/einvoicing-code-lists`, `/peppol-participants` | OpenPeppol code lists (document types, participant schemes, processes ...) and a lookup of registered Peppol participant identifiers. Rights not verified. |
-| Units and packages | `/units-of-measure`, `/package-types`, `/incoterms` | UN/ECE Recommendation 20 / 21 codes (**UN terms restrict commercial use**) and the Incoterms 2020 codes. |
-| Banking            | `/iban-formats`, `/sepa-countries`, `/bank-branches` | IBAN structures and SEPA flag (SWIFT registry via php-iban - **copying restricted**) and the German bank code directory (Bundesbank). |
+| Incoterms          | `/incoterms`              | The eleven Incoterms 2020 rule codes and names. |
+| Bank codes         | `/bank-branches`          | The German bank code directory with bank names, addresses, BIC and check-digit method (Bundesbank). |
 | Vehicles           | `/vehicle-makes`, `/vehicle-manufacturers`, `/vehicle-models`, `/vehicle-wmi-codes`, `/vehicle-recalls`, `/vehicle-model-years` | U.S. NHTSA vPIC catalog and recalls. U.S. market only. Rights not verified. |
 | European car models | `/vehicle-co2-models`, `/vehicle-fuel-types` | New cars registered in the EU 2010-2022 per make, model, year and fuel with registrations and average mass, power and type-approval CO2 (EEA monitoring, aggregated). |
 | Country indicators | `/worldbank-countries`, `/country-indicator-definitions`, `/country-indicators` | World Bank classification and 20 headline indicators per country and year (CC BY 4.0). |
 | Postal code to NUTS | `/postal-code-nuts`      | Which NUTS 3 region(s) a postal code lies in (Eurostat GISCO TERCET). |
+| Calendar names, plural rules | `/calendar-names`, `/plural-rules` | Month, weekday, quarter, day-period and era names per locale, and which plural form goes with which number (Unicode CLDR). |
+| Units              | `/unit-conversions`, `/unit-conversions/convert`, `/unit-preferences` | Conversion factors, a converter (mile → kilometre, °F → °C) and the unit a region prefers per usage (CLDR). |
+| Neighbouring countries | `/country-neighbours` | Pairs of countries with a common land border (GeoNames). |
+| Country groups     | `/country-groups`, `/country-group-memberships` | EU, euro area, Schengen, EEA and EFTA members on a given day, with the date they joined - e.g. to decide whether a supply is intra-EU. Today's members only (the UK is missing before February 2020). |
+| Country code systems | `/country-codes`        | Destatis country and territory keys next to ISO 3166-1, Bundesbank, ICAO and foreign-trade codes, vehicle signs and the country line of postal addresses. |
+| DACH municipalities | `/national-municipalities` | Official municipality registers of Germany (AGS), Austria (Gemeindekennziffer) and Switzerland (BFS number). |
+| German tax offices | `/tax-offices`            | Tax offices with their four-digit office number (the start of every German tax number) and address; no bank details (BZSt). Rights not verified. |
+| VAT number formats | `/vat-number-formats`     | Structure of the VAT identification numbers of the EU member states and Northern Ireland as the Commission describes it - a syntax hint before a VIES look-up, not a regex. |
+| Special VAT territories | `/special-tax-territories` | Parts of EU member states outside the EU VAT area (Canary Islands, Åland, Heligoland, Büsingen, Livigno ...) and whether they are inside the customs territory. |
+| Depreciation table | `/asset-useful-lives`     | Useful life in years per asset class from the German AfA table AV (BMF, 2000; later BMF letters are not reflected). Rights not verified. |
+| Registration authorities | `/registration-authorities` | Business registers per jurisdiction - the register a company number belongs to (GLEIF). Rights not verified. |
+| German courts      | `/courts`                 | Courts, public prosecutors' offices and justice authorities with their XJustiz id. Rights not verified. |
+| ÖNACE              | `/oenace-codes`           | The Austrian version of NACE, editions 2025 and 2008, with the Austrian subclasses (STATISTIK AUSTRIA). |
+| German vehicle type keys | `/kba-vehicle-types`, `/kba-manufacturers` | 101,841 HSN / TSN type keys of the registration certificate with manufacturer, make, trade name and technical data (KBA). Rights not verified. |
+| KBA code lists     | `/vehicle-code-lists`     | Vehicle classes and body types, fuels and emission classes that decode German registration documents (KBA). |
+| German plate prefixes | `/license-plate-regions` | 771 registration-plate prefixes with the city or district they stand for, current and expiring (KBA). |
+| Driving licence codes | `/driving-licence-codes` | The harmonised EU codes printed on driving licences (78 automatic transmission only, 95 professional driver ...) in 23 languages. |
+| Nature of transaction | `/nature-of-transaction-codes` | Intrastat nature-of-transaction codes (11 outright sale, 21 return of goods ...) in 23 languages. |
+| Food allergens and additives | `/food-allergens`, `/food-additives` | The 14 EU allergens that must be declared on food and the 341 E numbers of the Union list, in the 24 EU languages. |
+| Media types        | `/media-types`, `/file-extensions` | IANA media types (MIME) and which file extensions stand for them (mime-db). |
+| Internet registries | `/language-subtags`, `/http-status-codes`, `/smtp-status-codes`, `/uri-schemes`, `/service-ports`, `/character-sets` | IANA protocol registries: BCP 47 language subtags, HTTP and enhanced mail status codes, URI schemes, port numbers and character sets (CC0). |
+| Unicode blocks     | `/unicode-blocks`         | Unicode blocks with their code-point ranges; looks up the block of a character. |
+| Short numbers      | `/short-number-patterns`  | Emergency, toll-free, premium-rate and SMS short numbers per territory as patterns (libphonenumber). |
+| Paper sizes        | `/paper-sizes`            | ISO 216 / 269, JIS B and North American paper sizes in millimetres and inches; finds the size of a page by its dimensions. |
+| More localization  | `/list-patterns`, `/relative-time-fields`, `/date-interval-formats`, `/compact-number-formats`, `/person-name-patterns`, `/person-name-settings`, `/exemplar-characters`, `/quotation-marks`, `/likely-subtags`, `/calendar-eras`, `/numbering-systems`, `/hour-cycle-preferences` | Further CLDR data: lists ("A, B and C"), relative times ("in 3 days"), date ranges, compact numbers ("1.2K"), person-name formats, the letters of a language, quotation marks, eras, digit sets and the 12- or 24-hour clock. |
+| Windows time zones | `/windows-timezone-map`   | Windows time-zone ids and the IANA zones they stand for - for Outlook, Exchange and ICS integrations (CLDR). |
+| Emoji              | `/emoji-annotations`, `/emoji-groups` | Emoji names and search keywords in 126 locales, and every emoji with group, subgroup and Emoji version (Unicode). |
+| Chemical hazards (CLP) | `/clp-statements/{kind}`, `/clp-pictograms` | H, EUH and P statements and the pictograms GHS01-GHS09 of the CLP Regulation in the official EU languages. |
+| Waste              | `/eu-waste-codes`, `/waste-treatment-operations`, `/waste-hazard-properties`, `/weee-categories` | The European List of Waste with the hazardous entries marked, disposal and recovery operations D1-D15 / R1-R13, hazardous properties HP1-HP15 and the WEEE categories. |
+| Food and textile labelling | `/reference-intakes`, `/nutrition-claims`, `/textile-fibre-names` | EU reference intakes for nutrition tables, the permitted nutrition claims with their conditions, and the permitted textile fibre names. |
+| Euro conversion rates | `/euro-conversion-rates` | The irrevocably fixed rates of the 21 legacy currencies to the euro (1 euro = 1.95583 German marks ...). |
+| Accounting and tax rules | `/financial-statement-lines`, `/invoice-required-particulars`, `/vat-special-provisions`, `/record-retention-periods`, `/de-payroll-tax-keys` | Balance-sheet and income-statement layout, mandatory invoice content, VAT exemption and reverse-charge provisions, retention periods and German wage-tax classes, from German (partly Austrian) law. Each row names the provision, the as-of date and the URL; not legal advice. |
+| Employment and property rules | `/statutory-notice-periods`, `/labour-law-minimums`, `/operating-cost-types`, `/energy-performance-classes` | Notice periods for employment and tenancies, statutory leave, working-time and rest minimums, the operating costs a landlord may pass on, and the energy-efficiency classes A+ to H (German, partly Austrian law). |
+| E-invoice profiles | `/einvoice-profiles`      | Customization and profile ids of Peppol BIS Billing 3.0, XRechnung 3.0, Factur-X / ZUGFeRD and FatturaPA, each with the page it was read on. |
+| Vehicle regulations | `/tyre-label-classes`, `/ev-connector-types`, `/euro-emission-limits`, `/vehicle-weights-dimensions`, `/driving-time-rules` | EU tyre label classes, the charging connectors a recharging point must offer, Euro 5 / 6 and Euro VI emission limits, maximum weights and dimensions, and driving-time and rest rules. |
+| VIN check tables   | `/vin-character-tables`   | Letter values, position weights, check digits and model-year codes to validate a 17-character VIN offline (49 CFR 565.15). |
+| Barcodes           | `/gs1-application-identifiers`, `/barcode-symbologies` | GS1 application identifiers ((01) GTIN, (10) batch, (17) expiry date ...) with format and check rules, and barcode symbologies (EAN, Code 128, QR Code, Data Matrix ...) with character set, length and capacity. |
+| Meal plans         | `/meal-plan-codes`        | Hotel board codes (RO, BB, HB, FB, AI, UAI) with the American-plan aliases (EP, CP, MAP, AP) and names in five languages. |
+| More classifications | `/classifications`, `/classifications/{scheme}` | ISCED-F 2013, COFOG, ECOICOP 1 and 2, the CPV supplementary vocabulary, NAICS 2022, UK SIC 2007 and O*NET-SOC in one shape. Rights not verified for ISCED-F, COFOG, ECOICOP and the CPV supplementary vocabulary. |
+| Proficiency levels | `/proficiency-levels/{scale}` | The European Qualifications Framework levels and the CEFR language levels A1-C2 with their descriptors, in 30 languages. Rights not verified. |
+| EuroVoc            | `/eurovoc`                | The EU's multilingual thesaurus: 7,515 concepts in 21 domains with labels in the 24 EU languages. Rights not verified. |
+| NACE notes and ISIC | `/nace-explanatory-notes`, `/nace-isic-correspondences` | The "includes / excludes" notes of NACE classes and the links between NACE Rev. 2 and ISIC Rev. 4 (Eurostat). |
 | Data sources       | `/data-sources`           | Source, licence, attribution and loaded snapshot of every dataset above. |
 
 Most list endpoints accept a `q` free-text search and a `limit` parameter. See
@@ -207,8 +249,6 @@ All paths are relative to the base URL `https://public.doards.com/api`.
 | GET    | `/incoterms`, `/incoterms/{code}`  | `q`, `transport_mode`                                  |
 | GET    | `/einvoicing-code-lists`, `/einvoicing-code-lists/{list_name}` | list names; entries: `q`, `state`, `country`, `limit`, `offset` |
 | GET    | `/peppol-participants`, `/peppol-participants/{scheme}/{identifier}` | `scheme` (**required**), `identifier` (exact) **or** `prefix` (≥ 4 characters); `limit` ≤ 100 |
-| GET    | `/units-of-measure`, `/package-types` (+ `/{code}`) | `q`, `include_withdrawn`, `limit`, `offset`        |
-| GET    | `/iban-formats`, `/iban-formats/{country}`, `/sepa-countries` | `q`, `sepa`; detail by ISO2 country                |
 | GET    | `/bank-branches`, `/bank-branches/{branch_id}` | `q`, `bank_code`, `bic`, `city`, `postal_code`, `main_only`, `include_deleted` |
 | GET    | `/vehicle-makes`, `/vehicle-manufacturers`, `/vehicle-models`, `/vehicle-wmi-codes` | `q`, `country`, `vehicle_type`; models: `make` (id or name); WMI: `wmi` prefix, `manufacturer_id`; detail by id / WMI |
 | GET    | `/vehicle-recalls`, `/vehicle-recalls/{campaign_no}`, `/vehicle-model-years` | `make`, `model`, `year`, `q`, `component`; model years: `make` (**required**), `model` |
@@ -308,7 +348,6 @@ The newer datasets are built from open sources and keep their licences and credi
 | ISO 4217 currency codes | [SIX Group](https://www.six-group.com) (ISO 4217 Maintenance Agency) | No licence stated; ISO standard - rights not verified |
 | ISO 639-3 language codes | [SIL International](https://iso639-3.sil.org) | SIL terms - rights not verified |
 | Legal forms | [GLEIF](https://www.gleif.org) ISO 20275 code list | No licence stated on the file - rights not verified |
-| IBAN formats, SEPA flag | SWIFT IBAN registry, compiled by [php-iban](https://github.com/globalcitizen/php-iban) | SWIFT: copying "not as a source of profit"; php-iban LGPL-3.0 - **rights not verified** |
 | E-invoicing code lists, Peppol participants | [OpenPeppol](https://docs.peppol.eu/edelivery/codelists/) / [Peppol Directory](https://directory.peppol.eu) | No licence stated - rights not verified |
 | VAT rates | [European Commission, TEDB](https://ec.europa.eu/taxation_customs/tedb/) | Commission reuse policy presumed; not a reference for legal purposes - rights not verified |
 | German bank code directory | [Deutsche Bundesbank](https://www.bundesbank.de) | No licence stated - rights not verified |
@@ -316,7 +355,6 @@ The newer datasets are built from open sources and keep their licences and credi
 | European car models | [European Environment Agency](https://www.eea.europa.eu/en/datasets/dataset/co2-cars-emission-22) (Regulation (EU) 2019/631), aggregated by Doards | EEA data policy: open licence (ODC-By or similar); source acknowledged |
 | Country indicators | [The World Bank](https://data.worldbank.org) | CC BY 4.0 (per the World Bank; terms page not retrievable) |
 | Postal code to NUTS | [Eurostat GISCO TERCET](https://ec.europa.eu/eurostat/web/nuts/correspondence-tables) | Eurostat reuse; postal data CC BY-SA 4.0 per GISCO - rights not verified |
-| Units of measure, package types | UN/ECE Recommendations 20 / 21 via [UN/CEFACT vocab-codes](https://github.com/uncefact/vocab-codes) | **UN terms: non-commercial, no redistribution** (repository says GPL-3.0) - rights not verified |
 | Incoterms | International Chamber of Commerce | Codes and names only; Incoterms® is an ICC trademark |
 | Calendar names, plural rules, unit conversions and preferences | [Unicode CLDR](https://cldr.unicode.org) | Unicode License v3 (© Unicode, Inc.) |
 | Neighbouring countries | [GeoNames](https://www.geonames.org) | CC BY 4.0 |
