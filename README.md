@@ -65,8 +65,8 @@ tire sizes and the PEPPOL e-invoicing codelists.
 | Legal forms        | `/legal-forms`            | ISO 20275 entity legal forms (GmbH, AG, Ltd ...) per country and language (GLEIF). Rights not verified. |
 | VAT rates          | `/vat-rates`, `/vat-rate-goods` | Standard and reduced VAT rates of the EU member states with categories and CN / CPA codes (European Commission TEDB). Not a reference for legal purposes. |
 | E-invoicing lists  | `/einvoicing-code-lists`, `/peppol-participants` | OpenPeppol code lists (document types, participant schemes, processes ...) and a lookup of registered Peppol participant identifiers. Rights not verified. |
-| Incoterms          | `/incoterms`              | The eleven Incoterms 2020 rule codes and names. |
-| Bank codes         | `/bank-branches`          | The German bank code directory with bank names, addresses, BIC and check-digit method (Bundesbank). |
+| Units and packages | `/units-of-measure`, `/package-types`, `/incoterms` | UN/ECE Recommendation 20 / 21 codes (**UN terms restrict commercial use**) and the Incoterms 2020 codes. |
+| Banking            | `/iban-formats`, `/sepa-countries`, `/bank-branches` | IBAN structures and SEPA flag (SWIFT registry via php-iban - **copying restricted**) and the German bank code directory (Bundesbank). |
 | Vehicles           | `/vehicle-makes`, `/vehicle-manufacturers`, `/vehicle-models`, `/vehicle-wmi-codes`, `/vehicle-recalls`, `/vehicle-model-years` | U.S. NHTSA vPIC catalog and recalls. U.S. market only. Rights not verified. |
 | European car models | `/vehicle-co2-models`, `/vehicle-fuel-types` | New cars registered in the EU 2010-2022 per make, model, year and fuel with registrations and average mass, power and type-approval CO2 (EEA monitoring, aggregated). |
 | Country indicators | `/worldbank-countries`, `/country-indicator-definitions`, `/country-indicators` | World Bank classification and 20 headline indicators per country and year (CC BY 4.0). |
@@ -113,6 +113,48 @@ tire sizes and the PEPPOL e-invoicing codelists.
 | Proficiency levels | `/proficiency-levels/{scale}` | The European Qualifications Framework levels and the CEFR language levels A1-C2 with their descriptors, in 30 languages. Rights not verified. |
 | EuroVoc            | `/eurovoc`                | The EU's multilingual thesaurus: 7,515 concepts in 21 domains with labels in the 24 EU languages. Rights not verified. |
 | NACE notes and ISIC | `/nace-explanatory-notes`, `/nace-isic-correspondences` | The "includes / excludes" notes of NACE classes and the links between NACE Rev. 2 and ISIC Rev. 4 (Eurostat). |
+| Internet registries (more) | `/http-fields`, `/http-methods`, `/mail-header-fields`, `/dns-record-types`, `/ip-protocol-numbers`, `/link-relations`, `/tls-cipher-suites`, `/jwt-claims`, `/jose-algorithms`, `/oauth-parameters`, `/well-known-uris`, `/urn-namespaces`, `/special-use-names`, `/icalendar-elements`, `/vcard-elements`, `/iana-registry-entries` | IANA registries behind HTTP, mail, DNS, TLS, JOSE / OAuth, URNs, iCalendar and vCard (CC0); any record through `/iana-registries` + `/iana-registry-entries`. |
+| IP address blocks  | `/ip-special-ranges`, `/ip-special-ranges/lookup` | IPv4 / IPv6 special-purpose blocks (private, loopback, link-local, documentation ...); `lookup?ip=` says whether an address is inside one. |
+| File signatures    | `/file-signatures`, `/file-signatures/detect` | The leading bytes ("magic numbers") of about 376 file formats; `detect?bytes=` (hex) tells what a file looks like, independent of its name. |
+| Programming languages | `/programming-languages` | About 830 languages with extensions, file names, aliases, interpreters and colours (GitHub Linguist). |
+| .gitignore templates | `/gitignore-templates`  | About 310 `.gitignore` templates for languages, frameworks, editors and systems. |
+| Software licences and weaknesses | `/software-licenses`, `/cwe-weaknesses` | SPDX licence identifiers (names and flags only) and the MITRE Common Weakness Enumeration. |
+| Unicode characters | `/unicode-characters`, `/unicode-confusables`, `/idna-mappings` | Every assigned character (name, category, script, case mappings), look-alike characters for fraud checks, and the IDNA mapping table. |
+| HTML and encodings | `/html-character-references`, `/encoding-labels`, `/encoding-index/{encoding}` | Named character references (`&auml;`), encoding labels (latin1 = windows-1252) and the byte-to-character tables of the 27 single-byte encodings (windows-1252, ISO-8859-x, KOI8-R ...). |
+| Payment cards and MCC | `/payment-card-brands`, `/payment-card-brands/detect`, `/merchant-category-codes` | Card brands with IIN ranges, lengths and security codes; `detect?iin=` (at most 8 digits); 981 merchant category codes. |
+| Address and name words | `/street-types`, `/address-designators`, `/directional-terms`, `/name-titles` | Street types, unit / floor / PO-box words, directions, titles and degrees in about 60 languages with abbreviations (libpostal). |
+| People and contact codes | `/sex-gender-codes`, `/marital-status-codes`, `/relationship-types`, `/contact-channel-types`, `/address-types`, `/identity-document-types` | HL7 / FHIR code lists with the translations that HL7 provides. |
+| Stop words, profanity | `/stop-words`, `/profanity-words` | Stop words of 58 languages and a moderation word list of 27 languages. |
+| Check digits       | `/check-digit-algorithms`, `/check-digit/validate` | Luhn, GS1, IBAN, ISBN, ORCID, ISO 6346, VIN, UPU S10, Verhoeff, Damm - with published test values; checks the check character of a value. |
+| SI units           | `/si-prefixes`, `/si-units`, `/unit-code-mappings` | SI prefixes (incl. 2022), base / derived / accepted units, defining constants; invoice unit codes (Rec 20) mapped to CLDR and UCUM. |
+| Business basics    | `/business-document-types`, `/payment-terms`, `/late-payment-rules`, `/day-count-conventions` | Names of business documents in 5 languages, standard payment terms, the statutory limits for late payment (EU Directive 2011/7/EU, Germany, Austria), day-count and business-day conventions. |
+| Country profile (one call) | `/countries/{iso}/profile`, `/country-profiles`, `/country-flags` | **Everything about a country in one answer** (name in your locale, languages, currencies, time zones, calling code, capital, TLD, driving side, neighbours, EU / Schengen membership, measurement system, week, postal pattern, VAT / IBAN format, address format, flag); the status of every ISO code incl. EU, UK, XK, withdrawn ones (DD, SU, YU), FIPS, area, shared postal systems (Monaco, Liechtenstein ...); SVG flags. |
+| CSS colours, transport modes | `/css-colors`, `/public-transport-modes` | The 148 CSS named colours (hex, RGB, HSL) and the GTFS route types (tram, bus, ferry ...). |
+| Tax names per country | `/consumption-tax-names` | What the consumption tax and the tax registration number are called in a country and language (Umsatzsteuer / USt-IdNr., TVA / n° TVA, IVA / Partita IVA, BTW, NIP, ABN, GSTIN ...) - EU27 and 10 other countries; for invoice labels. |
+| Goods and parts | `/dangerous-goods-classes`, `/battery-sizes`, `/lamp-bases`, `/image-size-standards` | Dangerous-goods classes, labels and packing groups; battery sizes (AA = LR6 ...); lamp bases (E27, GU10 ...); screen, photo-print and passport-photo sizes. |
+| SQL key words | `/sql-keywords` | Reserved and non-reserved SQL words (PostgreSQL, SQL:2023 / 2016 / 92) - names to avoid unquoted. |
+| Reserved words in code | `/reserved-words`, `/reserved-words/languages` | Key words of Python, JavaScript, TypeScript, Java, C#, PHP, Go, Rust, Kotlin, Swift and SQL, and the reserved words of MySQL 8.0 and MariaDB 11.8: is `order` or `class` a safe field name? |
+| System codes | `/system-codes` | POSIX signals, errno names, exit codes (sysexits, shell conventions) and syslog levels with the Linux and macOS numbers. |
+| Photos, certificates, media | `/exif-tags`, `/object-identifiers`, `/media-codecs` | EXIF / GPS tags with the meaning of the values (Orientation), certificate and signature OIDs incl. eIDAS, and video / audio codec strings. |
+| Date and spreadsheet formats | `/date-pattern-symbols`, `/spreadsheet-number-formats` | The same date pattern in Java, strftime, .NET, PHP, Moment and Excel; the built-in number format ids of XLSX files. |
+| Science | `/chemical-elements`, `/physical-constants` | The 118 elements (names in 5 languages, weights, group, block) and the 355 CODATA 2022 constants. |
+| Currencies, fixed parities | `/currency-subunits`, `/fixed-currency-pegs` | Cent, Rappen, öre, fils ... of 83 currencies; the parities fixed by treaty or law (CFA franc, KMF, CVE, XPF, BAM, STN, DKK in ERM II). |
+| Work, law, logistics | `/driving-licence-categories`, `/employment-types`, `/education-levels`, `/gdpr-reference`, `/handling-marks` | EU licence categories AM - DE, contract and working-time types (with the schema.org value), ISCED levels, GDPR articles at a glance, carton handling marks. |
+| Letter phrases | `/salutations` | Salutations and closings in English, German, French, Italian and Spanish. |
+| Password blocklist | `/common-passwords/range/{prefix}` | Is a password among the ~100,000 most used? Send only the first 5 hex characters of its SHA-1 (k-anonymity); the API never receives a password. |
+| Product taxonomy | `/product-categories`, `/product-categories/{id}`, `/product-attributes`, `/product-attribute-values` | About 14,600 product categories in a tree, 8,240 attributes (Color, Size, Material ...) and their 74,820 values (Shopify Standard Product Taxonomy). |
+| Accessibility and web standards | `/wcag-success-criteria`, `/aria-roles`, `/keyboard-codes`, `/html-autofill-tokens`, `/html-elements` | WCAG 2.2 criteria with level and version, the 94 WAI-ARIA roles, KeyboardEvent `code` values, the `autocomplete` tokens and the HTML element index. |
+| HTML meta names and Open Graph | `/html-meta-names` | The standard `<meta>` names and pragma directives, the robots directives and the Open Graph properties and object types (`og:title`, `og:image`, `video.movie` ...). |
+| Identifier formats | `/identifier-formats` | Length, pattern, check method and a valid example of IBAN, BIC, LEI, ISIN, GTIN, ISBN, ISSN, DOI, ORCID, VIN, IMO, IMEI, MAC, UUID, EORI, CAS and 30 more. |
+| Numbers in words | `/spellout`, `/spellout-rule-sets`, `/spellout-rules` | 123 as 'one hundred twenty-three', 'einhundertdreiundzwanzig', 'cent vingt-trois', and as an ordinal (twenty-third), in 12 languages (en, de, fr, es, it, nl, pt, sv, da, tr, fi, ja) - amounts in words on invoices and cheques. Integers only. |
+| Transliteration | `/transliterate`, `/transliteration-rules` | Text to ASCII with the CLDR transforms Latin-ASCII (Straße -> Strasse, Łódź -> Lodz) and de-ASCII (Müller -> Mueller), for slugs, search keys, file names and SEPA-safe text. |
+| Tax identification numbers | `/tin-formats` | Length, pattern, check method and a valid example of the personal and company tax / identity numbers of 20 countries (DE IdNr, ES DNI / NIE / CIF, IT codice fiscale, NL BSN, PL PESEL / NIP, SE personnummer, CH AHV / UID, US SSN / EIN ...). |
+| Foods and nutrients | `/foods`, `/foods/{fdc_id}`, `/nutrients`, `/food-categories` | 7,793 foods of USDA SR Legacy with up to 150 nutrients per 100 g (energy, protein, fat, carbohydrate, fibre, vitamins, minerals) and portion weights; English names. |
+| Public holidays by rule | `/public-holiday-rules`, `/public-holidays/computed` | Holidays as rules (fixed date, Easter offset, n-th weekday ...) for DE (all states), AT, FR, IT, ES, NL, BE, IE, PL, US and the TARGET2 closing days; the dates of any year are computed, nothing is imported per year. |
+| UI words | `/ui-terms` | OK, Cancel, Select all, Cut, Copy, Paste, Delete, Undo ... in 79 locales (`Abbrechen`, `Löschen`, `Alles auswählen`). |
+| Test values | `/test-values` | Telephone ranges reserved for drama, test card numbers (Luhn-valid), and pointers to the reserved domains, IP ranges and example IBANs. |
+| Passport zones, alphabets, size classes | `/mrz-layouts`, `/spelling-alphabets`, `/enterprise-size-classes` | MRZ field positions of TD1 / TD2 / TD3 / visas (check digit: `/check-digit/validate?algorithm=icao9303`), the ICAO and Morse alphabets, the EU SME definition. |
+| Codes of daily life | `/ip-codes`, `/weather-codes`, `/content-age-ratings` | IP / IK protection codes, WMO weather codes with Beaufort and UV index, PEGI / USK / FSK / ESRB / BBFC age ratings. |
 | Data sources       | `/data-sources`           | Source, licence, attribution and loaded snapshot of every dataset above. |
 
 Most list endpoints accept a `q` free-text search and a `limit` parameter. See
@@ -249,6 +291,8 @@ All paths are relative to the base URL `https://public.doards.com/api`.
 | GET    | `/incoterms`, `/incoterms/{code}`  | `q`, `transport_mode`                                  |
 | GET    | `/einvoicing-code-lists`, `/einvoicing-code-lists/{list_name}` | list names; entries: `q`, `state`, `country`, `limit`, `offset` |
 | GET    | `/peppol-participants`, `/peppol-participants/{scheme}/{identifier}` | `scheme` (**required**), `identifier` (exact) **or** `prefix` (≥ 4 characters); `limit` ≤ 100 |
+| GET    | `/units-of-measure`, `/package-types` (+ `/{code}`) | `q`, `include_withdrawn`, `limit`, `offset`        |
+| GET    | `/iban-formats`, `/iban-formats/{country}`, `/sepa-countries` | `q`, `sepa`; detail by ISO2 country                |
 | GET    | `/bank-branches`, `/bank-branches/{branch_id}` | `q`, `bank_code`, `bic`, `city`, `postal_code`, `main_only`, `include_deleted` |
 | GET    | `/vehicle-makes`, `/vehicle-manufacturers`, `/vehicle-models`, `/vehicle-wmi-codes` | `q`, `country`, `vehicle_type`; models: `make` (id or name); WMI: `wmi` prefix, `manufacturer_id`; detail by id / WMI |
 | GET    | `/vehicle-recalls`, `/vehicle-recalls/{campaign_no}`, `/vehicle-model-years` | `make`, `model`, `year`, `q`, `component`; model years: `make` (**required**), `model` |
@@ -336,6 +380,20 @@ The newer datasets are built from open sources and keep their licences and credi
 | Postal codes, municipalities, city aliases | [GeoNames](https://www.geonames.org) | CC BY 4.0 |
 | Airports | [OurAirports](https://ourairports.com) | Public domain |
 | Time zones | [IANA Time Zone Database](https://www.iana.org/time-zones) | Public domain |
+| Internet registries (HTTP, DNS, TLS, JOSE ...), file formats | [IANA Protocol Registries](https://www.iana.org/protocols); [Apache Tika](https://tika.apache.org/); [GitHub Linguist](https://github.com/github-linguist/linguist); [github/gitignore](https://github.com/github/gitignore) | CC0 1.0; Apache License 2.0; MIT (© 2017 GitHub, Inc.); CC0 1.0 |
+| Unicode characters, confusables, IDNA | [Unicode Character Database and Security Mechanisms](https://www.unicode.org/ucd/) | Unicode License v3 (© Unicode, Inc.) |
+| HTML character references, encoding labels and indexes | [WHATWG](https://spec.whatwg.org/) | CC BY 4.0 |
+| Common Weakness Enumeration | [MITRE CWE](https://cwe.mitre.org/) | © 2006-2026 The MITRE Corporation; CWE Terms of Use (free for commercial use; MITRE's copyright and licence must accompany copies) |
+| SPDX licence identifiers | [SPDX License List](https://spdx.org/licenses/) | Identifiers and names only; **rights not verified** |
+| Address and name words | [libpostal](https://github.com/openvenues/libpostal) | MIT (© 2013 Al Barrentine) |
+| HL7 code lists | [HL7 FHIR](https://hl7.org/fhir/), [HL7 Terminology](https://terminology.hl7.org/) | CC0 1.0 |
+| Stop words, profanity, card brands, MCC | [stopwords-iso](https://github.com/stopwords-iso/stopwords-iso) (MIT), [LDNOOBW](https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words) (CC BY 4.0), [credit-card-type](https://github.com/braintree/credit-card-type) (MIT), [mcc-codes](https://github.com/greggles/mcc-codes) (Unlicense; IRS and USDA descriptions) | as stated |
+| Country code profiles, flags | [GeoNames](https://www.geonames.org) (CC BY 4.0), [IANA](https://www.iana.org/protocols) (CC0), [flag-icons](https://github.com/lipis/flag-icons) | CC BY 4.0; CC0 1.0; MIT (© 2013 Panayiotis Lipiridis) |
+| SQL key words | [PostgreSQL documentation](https://www.postgresql.org/docs/18/sql-keywords-appendix.html) | PostgreSQL License (© 1996-2026 The PostgreSQL Global Development Group) |
+| Physical constants | [NIST](https://physics.nist.gov/constants) (2022 CODATA recommended values) | U.S. Government work, not subject to copyright in the United States; provided "as is" |
+| EXIF tags | [Pillow](https://github.com/python-pillow/Pillow) `ExifTags` (ids and names) | MIT-CMU licence |
+| CSS colours, GTFS route types | [W3C CSS Color Module Level 4](https://www.w3.org/TR/css-color-4/), [General Transit Feed Specification](https://github.com/google/transit) | W3C document license (© W3C); Apache License 2.0 |
+| Check digits, SI units, payment terms, IP / weather codes, age ratings | Doards' compilation of published facts (BIPM SI Brochure, WMO, PEGI / USK / FSK / ESRB / BBFC and others) | Facts; no standard's text is reproduced |
 | Address rules, postal code formats | [Google libaddressinput](https://github.com/google/libaddressinput) | CC BY 4.0 |
 | NACE, CPA, PRODCOM, NUTS, LAU, Combined Nomenclature | [Eurostat](https://ec.europa.eu/eurostat) / European Commission, mostly via the EU Vocabularies service | Eurostat free re-use, source acknowledged — adapted; Eurostat is not responsible for the adaptation |
 | WZ 2025 | [Statistisches Bundesamt (Destatis)](https://www.destatis.de) | Reproduction and distribution with source citation |
@@ -348,6 +406,7 @@ The newer datasets are built from open sources and keep their licences and credi
 | ISO 4217 currency codes | [SIX Group](https://www.six-group.com) (ISO 4217 Maintenance Agency) | No licence stated; ISO standard - rights not verified |
 | ISO 639-3 language codes | [SIL International](https://iso639-3.sil.org) | SIL terms - rights not verified |
 | Legal forms | [GLEIF](https://www.gleif.org) ISO 20275 code list | No licence stated on the file - rights not verified |
+| IBAN formats, SEPA flag | SWIFT IBAN registry, compiled by [php-iban](https://github.com/globalcitizen/php-iban) | SWIFT: copying "not as a source of profit"; php-iban LGPL-3.0 - **rights not verified** |
 | E-invoicing code lists, Peppol participants | [OpenPeppol](https://docs.peppol.eu/edelivery/codelists/) / [Peppol Directory](https://directory.peppol.eu) | No licence stated - rights not verified |
 | VAT rates | [European Commission, TEDB](https://ec.europa.eu/taxation_customs/tedb/) | Commission reuse policy presumed; not a reference for legal purposes - rights not verified |
 | German bank code directory | [Deutsche Bundesbank](https://www.bundesbank.de) | No licence stated - rights not verified |
@@ -355,6 +414,7 @@ The newer datasets are built from open sources and keep their licences and credi
 | European car models | [European Environment Agency](https://www.eea.europa.eu/en/datasets/dataset/co2-cars-emission-22) (Regulation (EU) 2019/631), aggregated by Doards | EEA data policy: open licence (ODC-By or similar); source acknowledged |
 | Country indicators | [The World Bank](https://data.worldbank.org) | CC BY 4.0 (per the World Bank; terms page not retrievable) |
 | Postal code to NUTS | [Eurostat GISCO TERCET](https://ec.europa.eu/eurostat/web/nuts/correspondence-tables) | Eurostat reuse; postal data CC BY-SA 4.0 per GISCO - rights not verified |
+| Units of measure, package types | UN/ECE Recommendations 20 / 21 via [UN/CEFACT vocab-codes](https://github.com/uncefact/vocab-codes) | **UN terms: non-commercial, no redistribution** (repository says GPL-3.0) - rights not verified |
 | Incoterms | International Chamber of Commerce | Codes and names only; Incoterms® is an ICC trademark |
 | Calendar names, plural rules, unit conversions and preferences | [Unicode CLDR](https://cldr.unicode.org) | Unicode License v3 (© Unicode, Inc.) |
 | Neighbouring countries | [GeoNames](https://www.geonames.org) | CC BY 4.0 |
@@ -375,12 +435,28 @@ The newer datasets are built from open sources and keep their licences and credi
 | Driving licence codes | [EUR-Lex](https://eur-lex.europa.eu/eli/dir/2006/126), Directive 2006/126/EC, Annex I | © European Union; consolidated text CC BY 4.0 |
 | Nature-of-transaction codes | [EUR-Lex](https://eur-lex.europa.eu/eli/reg_impl/2020/1197), Implementing Regulation (EU) 2020/1197, Annex V | © European Union; consolidated text CC BY 4.0 |
 | German depreciation table AV | [Bundesministerium der Finanzen](https://www.bundesfinanzministerium.de), BMF letter of 15.12.2000 | Official instruction; no terms stated - rights not verified |
+| UK Standard Industrial Classification (SIC 2007) | [Office for National Statistics](https://www.ons.gov.uk) | Contains public sector information licensed under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/); adapted: code, level, parent and English title |
+| Occupations (O*NET-SOC) | [O*NET 31.0 Database](https://www.onetcenter.org), U.S. Department of Labor, Employment and Training Administration (USDOL/ETA) | CC BY 4.0. This page includes information from the O*NET 31.0 Database by USDOL/ETA. O*NET® is a trademark of USDOL/ETA. Doards has modified this information (code, level and parent added; descriptions not included); USDOL/ETA has not approved, endorsed or tested these modifications. |
+| German statutes, Austrian federal laws (tax, labour, tenancy and invoicing rules) | [gesetze-im-internet.de](https://www.gesetze-im-internet.de), [RIS](https://www.ris.bka.gv.at) | Official works, not protected by copyright (§ 5 UrhG; § 7 UrhG Austria); not legal advice |
+| Most used passwords (SHA-1 hashes only, k-anonymity range) | UK National Cyber Security Centre list (2019, built from [Have I Been Pwned](https://haveibeenpwned.com/Passwords) data), via [SecLists](https://github.com/danielmiessler/SecLists) | Contains public sector information licensed under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) (NCSC site terms; no requirement for Pwned Passwords); SecLists MIT (© 2018 Daniel Miessler). Only hashes and the rank are stored |
+| Numbers in words (spell-out rules) | [Unicode CLDR 48](https://cldr.unicode.org), cldr-rbnf 48.2.0 | Unicode License v3 (© Unicode, Inc.); the evaluator is Doards' own |
+| Transliteration (Latin-ASCII, de-ASCII) | [Unicode CLDR 48](https://cldr.unicode.org), common/transforms | Unicode License v3 (© Unicode, Inc.); one row per character mapping |
+| Tax identification number formats | Doards' compilation of the number schemes of tax and registration authorities (20 countries) | Facts; no authority's text is reproduced; not legal or tax advice |
+| Foods and nutrients | [USDA FoodData Central](https://fdc.nal.usda.gov), SR Legacy (April 2018) | Public domain, CC0 1.0. U.S. Department of Agriculture, Agricultural Research Service. FoodData Central, 2019. fdc.nal.usda.gov |
+| HTML meta names, robots directives, Open Graph | [WHATWG HTML Living Standard](https://html.spec.whatwg.org/), [The Open Graph protocol](https://ogp.me/) | CC BY 4.0 (© WHATWG); Open Web Foundation Agreement 0.9; descriptions are Doards' own wording |
+| Identifier formats | Doards' compilation of the formats in the identifier standards (ISO, GS1, IEEE, IETF ...) | Facts; no standard's text is reproduced |
+| Public-holiday rules | Doards' compilation of the holidays set by law (DE, AT, FR, IT, ES, NL, BE, IE, PL, US, TARGET2) | Facts; computed dates cross-checked with the MIT-licensed [holidays](https://github.com/vacanza/holidays) package (nothing copied); not legal advice |
+| Common user-interface words in 79 locales | [Android Open Source Project](https://source.android.com/), platform/frameworks/base strings | Apache License 2.0, Copyright (C) The Android Open Source Project; about 20 strings per locale |
+| Product categories, attributes and values | [Shopify Standard Product Taxonomy](https://github.com/Shopify/product-taxonomy) (release v2026-10) | MIT License, © Shopify |
+| WCAG 2.2, WAI-ARIA 1.2, KeyboardEvent code values | [W3C](https://www.w3.org/TR/WCAG22/): WCAG 2.2 (© 2020-2024), [WAI-ARIA 1.2](https://www.w3.org/TR/wai-aria-1.2/) (© 2013-2023), [UI Events code](https://www.w3.org/TR/uievents-code/) (© 2025) | W3C liability, trademark and permissive document license rules apply (© World Wide Web Consortium); numbers, names and relations only |
+| HTML autocomplete tokens, HTML elements | [WHATWG HTML Living Standard](https://html.spec.whatwg.org/) | CC BY 4.0 (© WHATWG: Apple, Google, Mozilla, Microsoft); reshaped into tables |
+| Late-payment rules | Directive 2011/7/EU; BGB §§ 286, 288; UGB §§ 456, 458; ABGB § 1000 | Official works; the German and Austrian rows are checked against the law text on every import; the Directive's rows are written from the Directive (EUR-Lex was not readable by robots); not legal advice |
+| Test values (drama telephone ranges, test card numbers) | Ofcom, NANPA and the payment providers' published test cards | Facts compiled by Doards; Ofcom's page answered 403, the UK ranges were confirmed from search results quoting it |
+| MySQL and MariaDB reserved words | Read from MySQL 8.0.46 (`INFORMATION_SCHEMA.KEYWORDS`) and MariaDB 11.8.9 (probed) | Facts |
 
 Coverage notes you should know before relying on the data: postal-code coordinates are estimates and the postal data is **not** address verification;
 airports, runways, frequencies and navigation aids are community maintained and **not** for flight operations; time zone offsets are informational (time zones change by law); currency digits and CLDR formats are display
 metadata, not tax-law rounding; phone patterns are syntax checks only; boundaries are generalized cartography; Wikidata is community edited and incomplete; the ECB rates are for information only. **The datasets marked "rights not verified" were added in 0.4.0 on the owner's instruction; whether they may be served or redistributed is still undecided** - `data_sources.review_status` says `pending_human_review`. Vehicle data covers the U.S. market only; `/vehicle-model-years` lists only recalled vehicles; `/peppol-participants` is a snapshot of identifiers (check the live Peppol SMP before sending); the VAT rates are not legal advice. Details per dataset: `DATA_SOURCES.md` and `DATA_LICENSES.md` in the repository.
-
----
 
 ## About Doards
 
